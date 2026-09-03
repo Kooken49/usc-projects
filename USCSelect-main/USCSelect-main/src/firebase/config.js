@@ -4,7 +4,7 @@ import {getFirestore} from "@firebase/firestore"
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyASqDURLGod9tiXJbmNXlICWf-c_XdIzB4",
+  apiKey: "",
   authDomain: "e-vote-ph.firebaseapp.com",
   projectId: "e-vote-ph",
   storageBucket: "e-vote-ph.appspot.com",
