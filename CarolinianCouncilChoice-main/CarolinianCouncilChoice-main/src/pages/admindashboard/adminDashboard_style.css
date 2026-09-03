@@ -1,0 +1,337 @@
+/* Reset some default styles */
+body, h1, h2, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  h2 {
+    font-size: 32px;
+    background-color: #11b35d;
+    color: white;
+    padding: 15px 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  /* Basic styling */
+  body {
+    font-family: 'Inter';
+    font-style: normal; 
+    font-weight: 400;
+    line-height: 24px;
+    color: #000000;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 40px;
+  }
+  
+  .FooterBox{
+    width: 100%;
+    height: 323px;
+    background: #11b35d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.FooterBox img.FooterLogo{
+    height: 100px;
+    width: 100px;
+    margin-top: 40px;
+}
+
+
+.FooterBox p.SiteName,
+.FooterBox p.Copyright{
+    position: absolute;
+    width: 245px;
+    height: 22px;
+    font-family: 'Inter';
+    font-style: normal; 
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+}
+
+.FooterBox p.SiteName{
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.FooterBox p.Copyright{
+    font-size: 15px;
+    margin-top: 90px;
+}
+
+
+.socialIcons{
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.socialIcons a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #006630;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons i{
+    font-size: 2em;
+    color:white;
+    opacity: 0.9;
+}
+
+.socialIcons a:hover {
+    background-color: #111;
+    transition: 0.3s;
+}
+
+.socialIcons a:hover i {
+    color: white;
+    transition: 0.3s;
+}
+
+#partyListContainer{
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+#positionContainer{
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+#userDataContainer{
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+#candidateContainer{
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+}
+
+
+#createPartyButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#createPartyButton:hover {
+    background-color: #FBBF16;
+}
+#updatePartyButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#updatePartyButton:hover {
+    background-color: #FBBF16;
+}
+#deletePartyButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#deletePartyButton:hover {
+    background-color: #fb1616;
+}
+
+#createPositionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#createPositionButton:hover {
+    background-color: #FBBF16;
+}
+#updatePositionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#updatePositionButton:hover {
+    background-color: #FBBF16;
+}
+#deletePositionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#deletePositionButton:hover {
+    background-color: #fb1616;
+}
+
+#updateUserButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#updateUserButton:hover {
+    background-color: #FBBF16;
+}
+#deleteUserButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#deleteUserButton:hover {
+    background-color: #fb1616;
+}
+
+#createCandidateButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#createCandidateButton:hover {
+    background-color: #FBBF16;
+}
+#updateCandidateButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#updateCandidateButton:hover {
+    background-color: #FBBF16;
+}
+#deleteCandidateButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+    background-color: #11b35d;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#deleteCandidateButton:hover {
+    background-color: #fb1616;
+}

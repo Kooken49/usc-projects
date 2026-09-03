@@ -1,0 +1,102 @@
+/* ====== General Section Box ====== */
+.section {
+    background-color: #36454F;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.section h2 {
+    margin-top: 0;
+    color: #FDFD96;
+    border-bottom: 2px solid #FDFD96;
+    padding-bottom: 5px;
+}
+
+/* ====== Tables ====== */
+.section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.section th, 
+.section td {
+    padding: 12px;
+    border: 1px solid #555;
+    text-align: left;
+}
+
+.section th {
+    background-color: #2F4F4F;
+    color: #fff;
+}
+
+.section tr:nth-child(even) { background-color: #4F6F6F; }
+.section tr:nth-child(odd) { background-color: #3B5F5F; }
+.section tr:hover { background-color: #5FAEAE; }
+
+.section .no-data {
+    text-align: center;
+    color: #ddd;
+}
+
+/* ====== Buttons ====== */
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #008080;
+    color: white;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #FDFD96;
+    color: #191970;
+}
+
+.btn-danger {
+    background-color: red;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+}
+
+/* ====== Add Plan Form ====== */
+.add-plan-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.add-plan-form label {
+    width: 100%;
+    font-weight: bold;
+}
+
+.add-plan-form input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.add-plan-form input[type=submit] {
+    background-color: #008080;
+    color: white;
+    width: 150px;
+}
+
+.add-plan-form input[type=submit]:hover {
+    background-color: #FDFD96;
+    color: #191970;
+}

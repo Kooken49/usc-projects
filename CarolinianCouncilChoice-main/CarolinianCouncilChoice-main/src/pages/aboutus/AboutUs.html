@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="AboutUs_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navBar">
+        <ul class = "leftLinks">
+            <!-- <div class = "leftLinks"> -->
+                <li><img src = "..\..\components\Images\LogoCCC.png" alt="Logo" class="navbar-logo"></li>
+                <li class="navbar-title">Carolinian Council Choice</li>
+        </ul>
+        <ul class = "rightLinks">
+            <!-- </div> -->
+            <!-- <div class = "rightLinks"> -->
+                <li><a href="..\landingpage\LandingPage.html">Home</a></li>
+                <li><a href="AboutUs.html">About</a></li>
+                <li><a href="..\contactus\ContactUs.html">Contact Us</a></li>
+                <li><a href="..\faq\FAQ.html">FAQ</a></li>
+                <li>
+                   <a href = "..\loginpage\login.html"><button class="LoginBtn">Log In</button></a>
+                   <a href = "..\signuppage\signup.html"><button class="RegisterBtn">Register</button></a>
+                </li>
+            <!-- </div> -->
+        </ul> 
+    </nav>
+
+    <div class = "mainWrapper">
+        <img class = "Backgroundimg" src = "..\..\components\Images\White Background Green.png">
+        <p class = "AboutUsText">About Us</p>
+        <p class = "AboutUsDesc">Carolinian Council Choice is an online voting platform that produces immediate, reliable results for electing chosen officers of the USC Supreme Student Council, the highest governing body in the University of San Carlos.</p>
+        <p class = "MgmtTeamText">Management Team</p>
+        <div class = "teamWrapper">
+            <div class = "member">
+                <p class = memberName>Jan Opolentisima</p>
+                <p class = memberType>Developer</p>
+            </div>
+            <div class = "member">
+                <p class = memberName>John Urgel</p>
+                <p class = memberType>Developer</p>
+            </div>
+            <div class = "member">
+                <p class = memberName>Antonio Vicen</p>
+                <p class = memberType>Developer</p>
+            </div>
+        </div>
+        <p class = "missionText">Our Mission</p>
+        <p class = "missionDesc">Carolinian Council Choice upholds USC's principles of academic discipline and missionary charism through secure online voting solutions. Our platform fosters excellence, empowering competent and socially responsible citizens to shape a rapidly changing world. With accurate, private elections and reliable results, we embrace online voting's transformative power to spread light, drive positive change, and build a more noble, community-oriented society.</p>
+    </div>
+
+    <footer class = "FooterBox">
+        <div class = "footerContainer"></div>
+            <img class = "FooterLogo" src = "..\..\components\Images\LogoCCC.png">
+            <p class = "SiteName">Carolinian Council Choice</p>
+            <p class = "Copyright">© 2024 Web 1</p>
+        
+            <div class="socialIcons">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            console.log('Page Loaded');
+    
+            // Debug Statements
+            console.log('window.location.href:', window.location.href);
+            console.log('window.location.pathname:', window.location.pathname);
+    
+            const navLinks = document.querySelectorAll('.navBar a');
+            const currentPage = window.location.href;
+            const homeLink = document.querySelector('.navBar a[href="LandingPage.html"]');
+    
+            // Normalize the pathname to handle different base URLs and remove leading slash
+            const path = window.location.pathname.replace(/^\//, '');
+            console.log('Normalized path:', path);
+    
+            const isLandingPage = path === '' || path.endsWith('LandingPage.html');
+            console.log('isLandingPage:', isLandingPage);
+    
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+    
+                // Remove the 'current-page' class from all links
+                link.classList.remove('current-page');
+    
+                // If the current URL is the landing page, add the 'current-page' class to the "Home" link
+                if (isLandingPage && link === homeLink) {
+                    link.classList.add('current-page');
+                    console.log('Hello World1'); // Debug Statement
+                }
+                // If the link's href matches the current URL, add the 'current-page' class
+                else if (currentPage.includes(linkHref)) {
+                    link.classList.add('current-page');
+                    console.log('Hello World2'); // Debug Statement
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

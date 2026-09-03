@@ -1,0 +1,388 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Nav Bar */
+nav {
+    height: 64px;
+    background-color: #11b35d;
+    display: flex;
+    justify-content: space-between; /* Distribute left and right sections to opposite ends */
+    align-items: center;
+    padding: 0 20px; /* Add some padding to the nav bar */
+}
+
+/* Navbar list styling */
+.navBar ul {
+    list-style-type: none;
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Navbar list item styling */
+.navBar li {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Navbar link styling */
+.navBar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    position: relative; /* Required for the underline animation */
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.navBar a.current-page {
+    color: #FBBF16; /* Yellow color */
+}
+
+/* Hover and focus styles */
+.navBar a:hover,
+.navBar a:focus {
+    color: #FBBF16; /* Yellow color on hover/focus */
+}
+
+.navBar a:hover::after,
+.navBar a:focus::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FBBF16; /* Yellow underline */
+    animation: underline-animation 0.3s forwards; /* Underline animation */
+}
+
+/* Underline animation */
+@keyframes underline-animation {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.navBar a.current-page::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FBBF16; /* Yellow underline */
+}
+
+.navbar-title {
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+
+}
+
+.navbar-title::first-letter {
+    font-size: 30px; /* Adjust the value as needed */
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+/* Button styling */
+.LoginBtn, .RegisterBtn {
+    box-sizing: border-box;
+    width: 130px;
+    height: 45px;
+    background: #11b35d;
+    border: 3px solid #ffffff;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 35px; 
+    font-size: 16px;
+    margin-left: 10px; 
+    font-family: 'Inter';
+    font-style: normal;
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.LoginBtn:hover {
+    background-color: #FBBF16;
+}
+
+.RegisterBtn:hover {
+    background-color: #FBBF16;
+    color: #ffffff; 
+}
+
+.RegisterBtn {
+    background: #FFFFFF;
+    color: #000; 
+}
+
+
+.navBar li:last-child {
+    display: flex;
+    gap: 10px; 
+}
+
+.mainWrapper{
+    width: 100%;
+    height: 1200px;
+    overflow: hidden;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.mainWrapper img.Backgroundimg {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: top;
+    opacity: 0.1; 
+    padding-top: 10%;   
+    position: absolute;
+}
+
+.mainWrapper p.AboutUsText{
+    position: absolute;
+    width: 290px;
+    height: 62px;
+    top: 20px;
+   
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+
+    color: #000000;
+}
+
+.mainWrapper p.AboutUsDesc{
+    position: absolute;
+    width: 570px;
+    height: 119px;
+    top: 160px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #797979;
+}
+
+.mainWrapper p.MgmtTeamText{
+    position: absolute;
+    width: 182px;
+    height: 23px;
+    top: 330px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #000000;
+
+}
+
+.teamWrapper{
+    display: flex;
+    height: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Add this line */
+    z-index: 1;
+    top: 20px;
+    padding: 0;
+}
+
+.member{
+    height: 100%;
+    width: 300px;
+    margin: 0 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #00a950;
+
+}
+
+.member p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    text-align: center;
+    margin: 0;
+    color: white;
+}
+
+.member p.memberName{
+    margin-top: 180px;
+    font-size: 20px;
+}
+
+.mainWrapper p.missionText{
+    position: absolute;
+    width: 270px;
+    height: 23px;
+    top: 830px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+
+    color: #000000;
+}
+
+
+.mainWrapper p.missionDesc{
+    position: absolute;
+    width: 664px;
+    height: 167px;
+    top: 920px;
+    
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+
+    color: #000000;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.FooterBox{
+    width: 100%;
+    height: 323px;
+    background: #11b35d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.FooterBox img.FooterLogo{
+    height: 100px;
+    width: 100px;
+    margin-top: 40px;
+}
+
+
+.FooterBox p.SiteName,
+.FooterBox p.Copyright{
+    position: absolute;
+    width: 245px;
+    height: 22px;
+    font-family: 'Inter';
+    font-style: normal; 
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+}
+
+.FooterBox p.SiteName{
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.FooterBox p.Copyright{
+    font-size: 15px;
+    margin-top: 90px;
+}
+
+
+.socialIcons{
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.socialIcons a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #006630;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons i{
+    font-size: 2em;
+    color:white;
+    opacity: 0.9;
+}
+
+.socialIcons a:hover {
+    background-color: #111;
+    transition: 0.3s;
+}
+
+.socialIcons a:hover i {
+    color: white;
+    transition: 0.3s;
+}

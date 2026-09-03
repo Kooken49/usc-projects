@@ -1,0 +1,327 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+head {
+    margin:0px;
+    padding:0px;
+}
+
+.CCC p.CCCText {
+    position: absolute;
+    width: 382px;
+    height: 261px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 75px;
+    line-height: 91px;
+    z-index: 1;
+
+    color: #000000;
+}
+
+.CCC p.CCCDesc{
+    position: absolute;
+    width: 534px;
+    height: 31px;
+    top: 330px;
+    z-index: 1;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    margin-left: 85px;
+
+    color: #000000;
+}
+
+.ssc img {
+    margin-top: 380px;
+    width: 23%;
+    opacity:0.7;
+    margin-left:5%;
+    z-index: 1;
+}
+
+.mainWrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    overflow: hidden;
+}
+.Backgroundimg{
+    width: 100%;
+    height: 100%;
+    scale: 200%;
+    overflow: hidden;
+    object-fit: cover; 
+    object-position: top;
+    opacity: 0.1; 
+    position: absolute;
+    z-index: 0;
+}
+
+.button input {
+    box-sizing: border-box;
+    width: 350px;
+    height: 66px;
+    font-size: 36px;
+    font-weight: larger;
+    margin-left:250px;
+    margin-top:25px;
+    z-index: 0;
+}
+.switch button {
+    box-sizing: border-box;
+    width: 350px;
+    height: 66px;
+    font-size: 36px;
+    font-weight: 300;
+    margin-left:215px;
+    margin-top:25px;
+}
+
+input {
+    padding-left: 10px;
+}
+
+.background h1 {
+    width: 369px;
+    height: 282px;
+    left: 52px;
+    margin-top:50px;
+    backdrop-filter: blur(2px);
+    color: #e0aa14;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 80px;
+    line-height: 91px;
+}
+
+.background h3 {
+    font-size: 20px;
+    margin-left:10px;
+    margin-top: 20px;
+}
+
+/* Rectangle 18 */
+.form {
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    left: 600px;
+    top: 6px;
+    padding:10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-radius: 50px;
+    justify-content: center;
+    align-content: first baseline;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    border:0.5px solid #e7e763;
+}
+
+.form p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 35px;
+}
+.name {
+   justify-content: center;
+   margin-top: 10px;
+}
+.name input {
+    display: inline;
+    box-sizing: border-box;
+    width: 350px;
+    height: 66px;
+    margin-bottom:5px;
+    margin-left: 20px;
+    background: #F5F5F5;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+.name input[type="text"]{
+    font-size:30px;
+    font-weight: light;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.signup-form input[type="text"]{
+    font-size:30px;
+    color:grey;
+    font-weight: light;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.signup-form input[type="email"]{
+    font-size:30px;
+    font-weight: light;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.signup-form  input[type="number"]{
+    font-size:30px;
+    font-weight: light;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.signup-form  input[type="password"]{
+    font-size:30px;
+    font-weight: light;
+    margin-bottom:0px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.signup-form input {
+    box-sizing: border-box;
+    display: inline;
+    width: 735px;
+    height: 66px;
+    margin-left:20px;
+    margin-bottom:5px;
+    background: #F5F5F5;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.margin-form {
+    margin-left:40px;
+}
+.name label {
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-right: 157.5px;
+    margin-bottom:10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 35px;
+
+}
+.signup-form label {
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-right: 212px;
+    font-size:30px;
+}
+.switch1 button {
+    float: inline-start;
+    width: 245px;
+    height: 10px;
+    top:50%;
+    border-radius: 10px;
+    background-color:green;
+    margin-left:100px;
+    margin-right:-50px;
+    margin-bottom:40px;
+    margin-top:40px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 85px;
+    border:0px;
+}
+.switch2 button {
+    width: 245px;
+    height: 5px;
+    border-radius: 10px;
+    top:50%;
+    background-color:black;
+    margin-bottom:40px;
+    margin-top:40px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 85px;
+    border:0px;
+}
+
+.switch {
+    margin-left:120px;
+    display:inline;
+}
+
+.switch2 {
+    width:100%;
+    height: 150px;
+}
+
+.switch button:hover {
+    width: 245px;
+    height: 80px;
+    background-color:green;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+hr{
+    position:sticky;
+    margin-top:10px;
+    margin-bottom:35px;
+    border: 0;
+    height: 3px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+
+}
+
+.signup-form a{
+    font-size:25px;
+    margin-left: 580px;
+    margin-top:0px;
+    margin-bottom:20px;
+}
+
+.signup-form label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 35px;
+}
+
+i{  
+    margin-left:30px;
+}
+.birth{
+    display:inline;
+}
+p{
+    position: absolute;
+    font-size:22px;
+    margin-left: 80px;
+}
+.createAccButton {
+    position: relative;
+    width: 260px;
+    height: 70px;
+    margin-top: 30px;
+    margin-left: 310px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    background: #006630;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.createAccButton:hover {
+    background-color: #FBBF16;
+}

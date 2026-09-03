@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Login</title>
+    <link rel="stylesheet" href="login_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="http://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+</head>
+<body>
+    <div class = "mainWrapper">
+        <img class = "Backgroundimg" src = "..\..\components\Images\White Background Green.png">
+    </div>
+        <div class="background">
+            <div class = "CCC">
+                <p class = "CCCText">Carolinian Council Choice</p>
+                <p class = "CCCDesc">An Online Voting System for Carolinians by Carolinians.</p>
+            </div>
+        </div>
+        <div class="ssc"><img src="..\..\components\Images\SSC Logo.png" alt="logo"></div>
+        <div class="form">
+            <div class="switch">
+                <div class="switch1"><a href="..\signuppage\signup.html"><button>REGISTER</button></a></div>
+                <div class="switch2"><a href="login.html"><button>SIGN IN</button></a></div>
+            </div>
+            <hr>
+            <form action="login.php" method="post">
+                <div class="login-form">
+                    <label>Email</label><br><br>    
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" class="form-control" name="email">
+                </div>
+                <div class="login-form">
+                    <label>Password</label><br><br>
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" class="form-control"  name="password">
+                    <a href="..\forgotpasspage\forgotpass.html">Forgot Password?</a><br>
+                </div>
+                <button class = "logInButton">Sign In</button>
+            </form>
+        </div>
+
+        <script type ="text/javascript">
+            const {createClient} = supabase;
+            const supabaseUrl = 'https://qbdvzhavzxgjdgctnzoe.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHZ6aGF2enhnamRnY3Ruem9lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY3OTM1MjIsImV4cCI6MjAzMjM2OTUyMn0.NyzChModofn6DKXkbQ4GU-TPdDccvxAtsuKuj9puK4c'
+            const connection = createClient(supabaseUrl, supabaseKey)
+
+            console.log(connection);
+
+            const emailInput = document.querySelector('input[name="email"]');
+            const passwordInput = document.querySelector('input[name="password"]');
+            const loginButton = document.querySelector('.logInButton');
+
+            // Add an event listener to the login button
+            loginButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+
+                const email = emailInput.value;
+                const password = passwordInput.value;
+
+                try {
+                    const { user, error } = await connection.auth.signInWithPassword({
+                        email,
+                        password,
+                    });
+
+                    if (error) {
+                        console.error(error);
+                        alert('Error signing in. Please check your email and password.');
+                    } else {
+                        // Update the authStatus to 'On' for all users
+                        const { data: updateData, updateError } = await connection.from('user_table')
+                            .update({ authStatus: 'On' })
+                            .eq('uscEmail', email)
+                            .single();
+
+                        if (updateError) {
+                            console.error(updateError);
+                            alert('Error updating user status. Please try again later.');
+                        } else {
+                            // Fetch the user data to check userType
+                            const { data: userData, error: userError } = await connection.from('user_table')
+                                .select('userType')
+                                .eq('uscEmail', email)
+                                .single();
+
+                            if (userError) {
+                                console.error(userError);
+                                alert('Error fetching user data. Please try again later.');
+                            } else {
+                                const userType = userData.userType;
+
+                                if (userType === 'Admin') {
+                                    alert('Successfully Signed in as Admin!');
+                                    // Redirect the admin to the adminDashboard
+                                    window.location.href = `../admindashboard/adminDashboard.html?uscEmail=${email}`;
+                                } else {
+                                    alert('Successfully Signed in!');
+                                    // Redirect the user to the userDashboard
+                                    window.location.href = `../dashboard/dashboard.html?uscEmail=${email}`;
+                                }
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('An error occurred while signing in. Please try again later.');
+                }
+            });
+        </script>
+</body>
+</html>

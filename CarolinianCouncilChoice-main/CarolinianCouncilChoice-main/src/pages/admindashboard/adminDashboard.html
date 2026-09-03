@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="adminDashboard_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Party Lists</a></li>
+        <li><a href="#">User Data</a></li>
+        <li><a href="#">Vote Candidates</a></li>
+        <button id="logoutButton">Logout</button>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+        <h2>Party Lists</h2>
+        <div id="partyListContainer"></div>
+        <button id="createPartyButton">Create Party</button>
+        <button id="updatePartyButton">Update Party</button>
+        <button id="deletePartyButton">Delete Party</button>
+    </section>
+    <section>
+        <h2>Positions</h2>
+        <div id="positionContainer"></div>
+        <button id="createPositionButton">Create Position</button>
+        <button id="updatePositionButton">Update Position</button>
+        <button id="deletePositionButton">Delete Position</button>
+    </section>
+    <section>
+        <h2>User Data</h2>
+        <div id="userDataContainer"></div>
+        <button id="updateUserButton">Update User</button>
+        <button id="deleteUserButton">Delete User</button>
+    </section>
+    <section>
+        <h2>Vote Candidates</h2>
+        <div id="candidateContainer"></div>
+        <button id="createCandidateButton">Create Candidate</button>
+        <button id="updateCandidateButton">Update Candidate</button>
+        <button id="deleteCandidateButton">Delete Candidate</button>
+    </section>
+  </main>
+    <footer class = "FooterBox">
+        <div class = "footerContainer"></div>
+            <img class = "FooterLogo" src = "..\..\components\Images\LogoCCC.png">
+            <p class = "SiteName">Carolinian Council Choice</p>
+            <p class = "Copyright">© 2024 Web 1</p>
+        
+            <div class="socialIcons">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script type ="text/javascript">
+        const {createClient} = supabase;
+        const supabaseUrl = 'https://qbdvzhavzxgjdgctnzoe.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHZ6aGF2enhnamRnY3Ruem9lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY3OTM1MjIsImV4cCI6MjAzMjM2OTUyMn0.NyzChModofn6DKXkbQ4GU-TPdDccvxAtsuKuj9puK4c'
+        const connection = createClient(supabaseUrl, supabaseKey)
+
+        console.log(connection);
+
+        async function fetchPartyLists() {
+            try {
+                const { data, error } = await connection.from('parties').select('*');
+                if (error) throw error;
+
+                // Update the party list container with the fetched data
+                partyListContainer.innerHTML = '';
+                data.forEach(party => {
+                    const partyElement = document.createElement('div');
+                    partyElement.innerHTML = `<h3>${party.partyname}</h3><p>${party.partydescription}</p><hr>`;
+                    partyListContainer.appendChild(partyElement);
+                });
+            } catch (error) {
+                console.error('Error fetching party lists:', error);
+            }
+        }
+
+            // Add event listener for the create party button
+        createPartyButton.addEventListener('click', createParty);
+
+            // Function to create a new party
+            async function createParty() {
+                const partyName = prompt('Enter the party name:');
+                const partyDescription = prompt('Enter the party description:');
+
+                try {
+                    const { data, error } = await connection.from('parties').insert({ partyname: partyName, partydescription: partyDescription });
+                    if (error) throw error;
+
+                    // Update the party list container with the new party
+                    fetchPartyLists();
+                } catch (error) {
+                    console.error('Error creating party:', error);
+                }
+            }
+
+
+        updatePartyButton.addEventListener('click', updateParty);
+        async function updateParty() {
+            try {
+                // Fetch the party lists
+                const { data: parties, error: partyError } = await connection.from('parties').select('*');
+                if (partyError) throw partyError;
+
+                // Create an array of party names
+                const partyNames = parties.map(party => party.partyname);
+
+                // Prompt the user to select a party
+                const selectedPartyName = prompt('Select a party to update:', partyNames.join('\n'));
+
+                // Find the selected party
+                const selectedParty = parties.find(party => party.partyname === selectedPartyName);
+                if (!selectedParty) {
+                    console.error('Selected party not found');
+                    return;
+                }
+
+                // Prompt the user for the new party name and description
+                const newPartyName = prompt('Enter the new party name:', selectedParty.partyname);
+                const newPartyDescription = prompt('Enter the new party description:', selectedParty.description);
+
+                // Update the party
+                const { data, error } = await connection
+                    .from('parties')
+                    .update({ partyname: newPartyName, partydescription: newPartyDescription })
+                    .eq('partyid', selectedParty.partyid);
+
+                if (error) throw error;
+
+                // Update the party list container with the updated party
+                fetchPartyLists();
+            } catch (error) {
+                console.error('Error updating party:', error);
+            }
+        }
+
+        
+        // Function to delete a party
+        deletePartyButton.addEventListener('click', deleteParty);
+        async function deleteParty() {
+            try {
+                // Fetch the party lists
+                const { data: parties, error: partyError } = await connection.from('parties').select('*');
+                if (partyError) throw partyError;
+
+                // Create an array of party names
+                const partyNames = parties.map(party => party.partyname);
+
+                // Prompt the user to select a party
+                const selectedPartyName = prompt('Select a party to delete:', partyNames.join('\n'));
+
+                // Find the selected party
+                const selectedParty = parties.find(party => party.partyname === selectedPartyName);
+                if (!selectedParty) {
+                console.error('Selected party not found');
+                return;
+                }
+
+                // Fetch the candidates associated with the selected party
+                const { data: candidates, error: candidateError } = await connection
+                .from('candidates')
+                .select('*')
+                .eq('partyid', selectedParty.partyid);
+
+                if (candidateError) throw candidateError;
+
+                // Delete the candidates associated with the selected party
+                for (const candidate of candidates) {
+                const { error: deleteError } = await connection
+                    .from('candidates')
+                    .delete()
+                    .eq('candidateid', candidate.candidateid);
+
+                if (deleteError) throw deleteError;
+                }
+
+                // Delete the party
+                const { data, error } = await connection
+                .from('parties')
+                .delete()
+                .eq('partyid', selectedParty.partyid);
+
+                if (error) throw error;
+
+                // Update the party list container with the remaining parties
+                fetchPartyLists();
+                fetchCandidates();
+            } catch (error) {
+                console.error('Error deleting party:', error);
+            }
+        }
+        
+        async function fetchUserData() {
+            try {
+                const { data, error } = await connection.from('user_table')
+                    .select('*')
+                    .eq('userType', 'Voter');
+
+                if (error) throw error;
+
+                // Update the user data container with the fetched data
+                userDataContainer.innerHTML = '';
+                data.forEach(user => {
+                    const userElement = document.createElement('div');
+                    userElement.textContent = `${user.firstName} ${user.lastName} (${user.uscEmail})`;
+                    userDataContainer.appendChild(userElement);
+                });
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+
+        updateUserButton.addEventListener('click', updateUser);
+        async function updateUser() {
+            try {
+                // Fetch the users
+                const { data: users, error: userError } = await connection.from('user_table').select('*');
+                if (userError) throw userError;
+
+                // Create an array of user emails
+                const userEmails = users.map(user => user.uscEmail);
+
+                // Prompt the user to select a user to update
+                const selectedEmail = prompt('Enter the email of the user to update:', '');
+
+                // Find the selected user
+                const selectedUser = users.find(user => user.uscEmail === selectedEmail);
+                if (!selectedUser) {
+                    console.error('Selected user not found');
+                    return;
+                }
+
+                // Prompt the user for the new email
+                const newEmail = prompt('Enter the new email:', selectedEmail);
+
+                // Update the user
+                const { data, error } = await connection
+                    .from('user_table')
+                    .update({ uscEmail: newEmail })
+                    .eq('uscEmail', selectedEmail);
+
+                if (error) throw error;
+
+                // Refresh the user data container
+                fetchUserData();
+            } catch (error) {
+                console.error('Error updating user:', error);
+            }
+        }
+        
+        deleteUserButton.addEventListener('click', deleteUser);
+        async function deleteUser() {
+            try {
+                // Fetch the users
+                const { data: users, error: userError } = await connection.from('user_table').select('*');
+                if (userError) throw userError;
+
+                // Create an array of user emails
+                const userEmails = users.map(user => user.uscEmail);
+
+                // Prompt the user to select a user to delete
+                const selectedEmail = prompt('Enter the email of the user to delete:', '');
+
+                // Find the selected user
+                const selectedUser = users.find(user => user.uscEmail === selectedEmail);
+                if (!selectedUser) {
+                    console.error('Selected user not found');
+                    return;
+                }
+
+                // Delete the user
+                const { data, error } = await connection
+                    .from('user_table')
+                    .delete()
+                    .eq('uscEmail', selectedEmail);
+
+                if (error) throw error;
+
+                // Refresh the user data container
+                fetchUserData();
+            } catch (error) {
+                console.error('Error deleting user:', error);
+            }
+        }
+
+        async function fetchPositions() {
+            try {
+                const { data, error } = await connection.from('positions').select('*');
+                if (error) throw error;
+
+                // Update the position container with the fetched data
+                positionContainer.innerHTML = '';
+                data.forEach(position => {
+                const positionElement = document.createElement('div');
+                positionElement.innerHTML = `<span>${position.position_name}</span> - <span>${position.position_description}</span>`;
+                positionContainer.appendChild(positionElement);
+                });
+            } catch (error) {
+                console.error('Error fetching positions:', error);
+            }
+        }
+        fetchPositions();
+
+        // Add event listener for the create position button
+        createPositionButton.addEventListener('click', createPosition);
+        // Function to create a new position
+        async function createPosition() {
+            const positionName = prompt('Enter the position name:');
+            const positionDescription = prompt('Enter the position description:');
+
+            try {
+                const { data, error } = await connection.from('positions').insert({ position_name: positionName, position_description: positionDescription });
+                if (error) throw error;
+
+                // Update the position container with the new position
+                fetchPositions();
+            } catch (error) {
+                console.error('Error creating position:', error);
+            }
+        }
+
+        // Add event listener for the update position button
+        updatePositionButton.addEventListener('click', updatePosition);
+        async function updatePosition() {
+            try {
+                // Fetch the positions
+                const { data: positions, error: positionError } = await connection.from('positions').select('*');
+                if (positionError) throw positionError;
+
+                // Create an array of position names
+                const positionNames = positions.map(position => position.position_name);
+
+                // Prompt the user to select a position
+                const selectedPositionName = prompt('Select a position to update:', positionNames.join('\n'));
+
+                // Find the selected position
+                const selectedPosition = positions.find(position => position.position_name === selectedPositionName);
+                if (!selectedPosition) {
+                console.error('Selected position not found');
+                return;
+                }
+
+                // Prompt the user for the new position name and description
+                const newPositionName = prompt('Enter the new position name:', selectedPosition.position_name);
+                const newPositionDescription = prompt('Enter the new position description:', selectedPosition.position_description);
+
+                // Update the position
+                const { data, error } = await connection
+                .from('positions')
+                .update({ position_name: newPositionName, position_description: newPositionDescription })
+                .eq('positionid', selectedPosition.positionid);
+
+                if (error) throw error;
+
+                // Update the position container with the updated position
+                fetchPositions();
+            } catch (error) {
+                console.error('Error updating position:', error);
+            }
+        }
+
+        // Add event listener for the update position button
+        deletePositionButton.addEventListener('click', deletePosition);
+        async function deletePosition() {
+            try {
+                // Fetch the positions
+                const { data: positions, error: positionError } = await connection.from('positions').select('*');
+                if (positionError) throw positionError;
+
+                // Create an array of position names
+                const positionNames = positions.map(position => position.position_name);
+
+                // Prompt the user to select a position
+                const selectedPositionName = prompt('Select a position to delete:', positionNames.join('\n'));
+
+                // Find the selected position
+                const selectedPosition = positions.find(position => position.position_name === selectedPositionName);
+                if (!selectedPosition) {
+                console.error('Selected position not found');
+                return;
+                }
+
+                // Delete the position
+                const { data, error } = await connection
+                .from('positions')
+                .delete()
+                .eq('positionid', selectedPosition.positionid);
+
+                if (error) throw error;
+
+                // Update the position container with the remaining positions
+                fetchPositions();
+            } catch (error) {
+                console.error('Error deleting position:', error);
+            }
+        }
+
+
+
+        // Fetch vote candidates from the database
+        async function fetchCandidates() {
+            try {
+                // Fetch candidates with their associated positions and party lists
+                const { data: candidates, error } = await connection
+                    .from('candidates')
+                    .select(`
+                        firstName,
+                        lastName,
+                        candidateDescription,
+                        positions (
+                            position_name
+                        ),
+                        parties (
+                            partyname
+                        )
+                    `);
+
+                if (error) throw error;
+
+                // Update the candidate container with the fetched data
+                const candidateContainer = document.getElementById('candidateContainer');
+                candidateContainer.innerHTML = '';
+                candidates.forEach(candidate => {
+                    const candidateElement = document.createElement('div');
+                    candidateElement.innerHTML = `
+                        <div>
+                            <span>${candidate.firstName} ${candidate.lastName}</span>
+                            <span> - ${candidate.positions.position_name}</span>
+                            <span> (Party: ${candidate.parties.partyname})</span>
+                        </div>
+                        <p>${candidate.candidateDescription}</p>
+                    `;
+                    candidateContainer.appendChild(candidateElement);
+                });
+            } catch (error) {
+                console.error('Error fetching candidates:', error);
+            }
+        }
+
+        // Add event listener for the create candidate button
+        createCandidateButton.addEventListener('click', createCandidate);
+
+        // Function to create a new candidate
+        async function createCandidate() {
+            try {
+                // Fetch the available parties
+                const { data: parties, error: partyError } = await connection.from('parties').select('*');
+                if (partyError) throw partyError;
+
+                // Fetch the available positions
+                const { data: positions, error: positionError } = await connection.from('positions').select('*');
+                if (positionError) throw positionError;
+
+                // Create arrays of party and position names
+                const partyNames = parties.map(party => party.partyname);
+                const positionNames = positions.map(position => position.position_name);
+
+                // Prompt the user to select a party and position
+                const selectedPartyName = prompt('Select a party:', partyNames.join('\n'));
+                const selectedPositionName = prompt('Select a position:', positionNames.join('\n'));
+
+                // Find the selected party and position
+                const selectedParty = parties.find(party => party.partyname === selectedPartyName);
+                const selectedPosition = positions.find(position => position.position_name === selectedPositionName);
+
+                // Prompt the user for the candidate's first name, last name, and description
+                const firstName = prompt('Enter the candidate\'s first name:');
+                const lastName = prompt('Enter the candidate\'s last name:');
+                const candidateDescription = prompt('Enter the candidate\'s description:');
+
+                // Create the new candidate
+                const { data, error } = await connection.from('candidates').insert({
+                firstName: firstName,
+                lastName: lastName,
+                partyid: selectedParty.partyid,
+                positionid: selectedPosition.positionid,
+                candidateDescription: candidateDescription
+                });
+
+                if (error) throw error;
+
+                // Update the candidate container with the new candidate
+                fetchCandidates();
+            } catch (error) {
+                console.error('Error creating candidate:', error);
+            }
+        }
+
+        // Add event listener for the update candidate button
+        updateCandidateButton.addEventListener('click', updateCandidate);
+        async function updateCandidate() {
+            try {
+                // Fetch the candidates
+                const { data: candidates, error: candidateError } = await connection.from('candidates').select('*');
+                if (candidateError) throw candidateError;
+
+                // Fetch the parties
+                const { data: parties, error: partyError } = await connection.from('parties').select('*');
+                if (partyError) throw partyError;
+
+                // Fetch the positions
+                const { data: positions, error: positionError } = await connection.from('positions').select('*');
+                if (positionError) throw positionError;
+
+                // Create arrays of candidate names, party names, and position names
+                const candidateNames = candidates.map(candidate => `${candidate.firstName} ${candidate.lastName}`);
+                const partyNames = parties.map(party => party.partyname);
+                const positionNames = positions.map(position => position.position_name);
+
+                // Prompt the user to select a candidate
+                const selectedCandidateName = prompt('Select a candidate to update:', candidateNames.join('\n'));
+
+                // Find the selected candidate
+                const selectedCandidate = candidates.find(candidate => `${candidate.firstName} ${candidate.lastName}` === selectedCandidateName);
+                if (!selectedCandidate) {
+                console.error('Selected candidate not found');
+                return;
+                }
+
+                // Prompt the user to select a new party and position
+                const newPartyName = prompt('Select a new party:', partyNames.join('\n'));
+                const newPositionName = prompt('Select a new position:', positionNames.join('\n'));
+
+                // Find the new party and position
+                const newParty = parties.find(party => party.partyname === newPartyName);
+                const newPosition = positions.find(position => position.position_name === newPositionName);
+
+                // Prompt the user for the new candidate first name, last name, and description
+                const newFirstName = prompt('Enter the new first name:', selectedCandidate.firstName);
+                const newLastName = prompt('Enter the new last name:', selectedCandidate.lastName);
+                const newCandidateDescription = prompt('Enter the new candidate description:', selectedCandidate.candidateDescription);
+
+                // Update the candidate
+                const { data, error } = await connection
+                .from('candidates')
+                .update({
+                    firstName: newFirstName,
+                    lastName: newLastName,
+                    partyid: newParty.partyid,
+                    positionid: newPosition.positionid,
+                    candidateDescription: newCandidateDescription
+                })
+                .eq('candidateid', selectedCandidate.candidateid);
+
+                if (error) throw error;
+
+                // Update the candidate container with the updated candidate
+                fetchCandidates();
+            } catch (error) {
+                console.error('Error updating candidate:', error);
+            }
+        }
+
+        // Add event listener for the delete candidate button
+        deleteCandidateButton.addEventListener('click', deleteCandidate);
+        async function deleteCandidate() {
+            try {
+                // Fetch the candidates
+                const { data: candidates, error: candidateError } = await connection.from('candidates').select('*');
+                if (candidateError) throw candidateError;
+
+                // Create an array of candidate names
+                const candidateNames = candidates.map(candidate => `${candidate.firstName} ${candidate.lastName}`);
+
+                // Prompt the user to select a candidate to delete
+                const selectedCandidateName = prompt('Select a candidate to delete:', candidateNames.join('\n'));
+
+                // Find the selected candidate
+                const selectedCandidate = candidates.find(candidate => `${candidate.firstName} ${candidate.lastName}` === selectedCandidateName);
+                if (!selectedCandidate) {
+                console.error('Selected candidate not found');
+                return;
+                }
+
+                // Delete the candidate
+                const { data, error } = await connection
+                .from('candidates')
+                .delete()
+                .eq('candidateid', selectedCandidate.candidateid);
+
+                if (error) throw error;
+
+                // Update the candidate container with the remaining candidates
+                fetchCandidates();
+            } catch (error) {
+                console.error('Error deleting candidate:', error);
+            }
+        }
+
+
+        const logoutButton = document.getElementById('logoutButton');
+        logoutButton.addEventListener('click', handleLogout);
+
+        async function handleLogout() {
+            // Get the current user's email from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const uscEmail = urlParams.get('uscEmail');
+
+            try {
+                // Update the authStatus in the user_table
+                const { data, error } = await connection.from('user_table')
+                    .update({ authStatus: 'Off' })
+                    .eq('uscEmail', uscEmail);
+
+                if (error) {
+                    console.error(error);
+                    alert('Error updating auth status. Please try again later.');
+                } else {
+                    // Redirect to the login page
+                    alert("You have been successfully Signed out!");
+                    window.location.href = '../loginpage/login.html';
+                }
+            } catch (error) {
+                console.error(error);
+                alert('An error occurred while updating auth status. Please try again later.');
+            }
+        }
+
+
+
+        // Fetch data on page load
+        fetchPartyLists();
+        fetchUserData();
+        fetchCandidates();
+  </script>
+</body>
+</html>

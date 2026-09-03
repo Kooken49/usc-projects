@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+  <style>
+    .font-georgia {
+      font-family: Georgia, serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body class="h-screen flex text-gray-800 font-georgia">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-[#f1f1f1] shadow-lg p-6 flex flex-col justify-between">
+    <div>
+      <a href="index.html" class="flex items-center space-x-2 mb-8">
+        <img src="img/logo.png" alt="Logo" class="h-12">
+        <span class="text-xl font-bold text-blue-700">World AI</span>
+      </a>
+
+      <nav class="flex flex-col space-y-4 text-lg">
+        <a href="#" class="hover:text-blue-600">Dashboard</a>
+        <a href="#" class="hover:text-blue-600">Admins</a>
+        <a href="#" class="hover:text-blue-600">User Management</a>
+        <a href="#" class="text-blue-700 font-semibold">Schedules</a>
+        <a href="#" class="hover:text-blue-600">Notifications</a>
+        <a href="#" class="hover:text-red-600">Logout</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 bg-white flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-[#f1f1f1] flex justify-center items-center px-6 py-6 shadow h-24">
+      <h1 class="text-3xl font-bold font-georgia">Schedule Management</h1>
+    </header>
+
+    <!-- Main Section -->
+    <main class="p-6 flex-1 overflow-auto">
+
+      <!-- Schedule Requests Table -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-bold mb-4">Schedule Requests</h2>
+        <div class="overflow-x-auto bg-white shadow rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-blue-100 text-blue-900">
+              <tr>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">ID</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">Student Name</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">Teacher</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">Time</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr>
+                <td class="px-6 py-4 text-sm">001</td>
+                <td class="px-6 py-4 text-sm">Alice Dela Cruz</td>
+                <td class="px-6 py-4 text-sm">
+                  <select class="w-full border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option selected disabled>Select Teacher</option>
+                    <option>Mr. Smith</option>
+                    <option>Ms. Johnson</option>
+                    <option>Dr. Lee</option>
+                  </select>
+                </td>
+                <td class="px-6 py-4 text-sm">08:00 AM - 09:00 AM</td>
+                <td class="px-6 py-4 text-sm">
+                  <button class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600 transition">
+                    Approve
+                  </button>
+                   <button class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 transition">
+    Decline
+  </button>
+</td>
+                </td>
+              </tr>
+              <!-- Add more request rows dynamically here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Approved or All Schedules Table -->
+      <section>
+        <h2 class="text-2xl font-bold mb-4">All Schedules</h2>
+        <div class="overflow-x-auto bg-white shadow rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100 text-gray-800">
+              <tr>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">ID</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">Student Name</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">Teacher</th>
+                <th class="px-6 py-3 text-left text-sm font-semibold uppercase">Time</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              <tr>
+                <td class="px-6 py-4 text-sm">001</td>
+                <td class="px-6 py-4 text-sm">Alice Dela Cruz</td>
+                <td class="px-6 py-4 text-sm">Mr. Smith</td>
+                <td class="px-6 py-4 text-sm">08:00 AM - 09:00 AM</td>
+              </tr>
+              <!-- Add more approved schedules here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>

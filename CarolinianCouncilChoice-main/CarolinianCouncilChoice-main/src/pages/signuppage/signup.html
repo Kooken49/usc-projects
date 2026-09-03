@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="signup_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="http://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <div class = mainWrapper>
+        <img class = "Backgroundimg" src = "..\..\components\Images\White Background Green.png">
+    </div> 
+        <div class = "CCC">
+            <p class = "CCCText">Carolinian Council Choice</p>
+            <p class = "CCCDesc">An Online Voting System for Carolinians by Carolinians.</p>
+        </div>
+        <div class="ssc">
+            <img src="..\..\components\Images\SSC Logo.png" alt="logo">
+        </div>
+        <div class="form">
+            <div class="switch">
+                <div class="switch1"><a href="signup.html"><button>REGISTER</button></a></div>
+                <div class="switch2"><a href="..\loginpage\login.html" link="#"><button>SIGN IN</button></a></div>
+            </div>
+            <form>
+                <div class="name"> 
+                    <label>First Name</label><label>Last Name</label><br><br>
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="fname"name="firstname"> 
+                    <input type="text" id="lname"name="lastname">
+                </div>
+
+                <div class="signup-form">
+                    <label>USC Email</label><br><br>
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" name="email">
+                </div>
+            
+                <div class="signup-form">
+                    <label>Password</label><br><br>
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" id="password" name="password">
+                </div>
+
+                <div class="signup-form">
+                    <label>Repeat Password</label><br><br>    
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" class="form-control" name="repeat_password" id="repeat_password">
+                    <p><a href="..\forgotpasspage\forgotpass.html">Forgot Password?</a>
+                </div>
+
+                <button class = "createAccButton" onclick="createAccount(event)">Create Account</button>
+                <p>By clicking signup box, you agree to our <a href="..\termsofservice\TermsOfService.html">Terms of Service</a> and <a href="..\privacypolicy\privacypolicy.html">Privacy Policy</a></p></input>
+            </form>
+        </div>
+
+        <script type ="text/javascript">
+
+            const {createClient} = supabase;
+            const supabaseUrl = 'https://qbdvzhavzxgjdgctnzoe.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHZ6aGF2enhnamRnY3Ruem9lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY3OTM1MjIsImV4cCI6MjAzMjM2OTUyMn0.NyzChModofn6DKXkbQ4GU-TPdDccvxAtsuKuj9puK4c'
+            const connection = createClient(supabaseUrl, supabaseKey)
+
+            console.log(connection);
+
+            async function createAccount(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const fname = document.getElementById('fname').value;
+                const lname = document.getElementById('lname').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const repeatPassword = document.getElementById('repeat_password').value;
+                const userType = 'Voter'; // Default value for userType
+
+                // Validate if all fields are filled out
+                if (!fname || !lname || !email || !password || !repeatPassword) {
+                    alert('Please fill out all fields.');
+                    return;
+                }
+
+                // Validate if passwords match
+                if (password !== repeatPassword) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+
+                // Validate if email has the correct domain
+                const emailDomain = email.split('@')[1];
+                if (emailDomain !== 'usc.edu.ph') {
+                    alert('Please enter a valid USC email address.');
+                    return;
+                }
+
+                try {
+                    const { user, error } = await connection.auth.signUp({
+                        email,
+                        password,
+                        data: {
+                            user: {
+                                firstName: fname,
+                                lastName: lname,
+                                userType: userType, // Set the userType
+                            },
+                        },
+                    });
+
+                    if (error) {
+                        alert('Error signing up: ' + error.message);
+                    } else {
+                        // Store user data in the user_table
+                        const { data: insertData, error: insertError } = await connection
+                            .from('user_table')
+                            .insert({
+                                firstName: fname,
+                                lastName: lname,
+                                uscEmail: email,
+                                userType: userType,
+                            });
+
+                        if (insertError) {
+                            alert('Error storing user data: ' + insertError.message);
+                        } else {
+                            alert('Signed Up Successfully!');
+                            window.location.href = '../loginpage/login.html'; // Redirect to signin page
+                        }
+                    }
+                } catch (err) {
+                    alert('Unexpected error: ' + err.message);
+                }
+            }
+           
+        </script>
+</body>
+</html>

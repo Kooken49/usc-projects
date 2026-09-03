@@ -1,0 +1,519 @@
+/* Reset default margins and paddings */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Nav Bar */
+nav {
+    height: 64px;
+    background-color: #11b35d;
+    display: flex;
+    justify-content: space-between; /* Distribute left and right sections to opposite ends */
+    align-items: center;
+    padding: 0 20px; /* Add some padding to the nav bar */
+}
+
+/* Navbar list styling */
+.navBar ul {
+    list-style-type: none;
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Navbar list item styling */
+.navBar li {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Navbar link styling */
+.navBar a.navRedirect {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    position: relative; /* Required for the underline animation */
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.navBar a.current-page {
+    color: #FBBF16; /* Yellow color */
+}
+
+/* Hover and focus styles */
+.navBar a.navRedirect:hover,
+.navBar a.navRedirect:focus {
+    color: #FBBF16; /* Yellow color on hover/focus */
+}
+
+.navBar a.navRedirect:hover::after,
+.navBar a.navRedirect:focus::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FBBF16; /* Yellow underline */
+    animation: underline-animation 0.3s forwards; /* Underline animation */
+}
+
+/* Underline animation */
+@keyframes underline-animation {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.navBar a.current-page::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FBBF16; /* Yellow underline */
+}
+
+.navbar-title {
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+
+}
+
+.navbar-title::first-letter {
+    font-size: 30px; /* Adjust the value as needed */
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+/* Button styling */
+.LoginBtn, .RegisterBtn {
+    box-sizing: border-box;
+    width: 130px;
+    height: 45px;
+    background: #11b35d;
+    border: 3px solid #ffffff;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 35px; 
+    font-size: 16px;
+    margin-left: 10px; 
+    font-family: 'Inter';
+    font-style: normal;
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.LoginBtn:hover {
+    background-color: #FBBF16;
+}
+
+.RegisterBtn:hover {
+    background-color: #FBBF16;
+    color: #ffffff; 
+}
+
+.RegisterBtn {
+    background: #FFFFFF;
+    color: #000; 
+}
+
+
+.navBar li:last-child {
+    display: flex;
+    gap: 10px; 
+}
+
+.Homescreen{
+    width: 100%;
+    height: 1054px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.Homescreen img.Backgroundimg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: top;
+    opacity: 0.1; 
+    position: relative;
+    padding-top: 10%; 
+}
+
+.Homescreen img.CCCLogo {
+    position: absolute;
+    bottom: 33%; /* Position the image at the bottom */
+    left: 50%; /* Position the image horizontally at 50% */
+    top: 377px;
+    transform: translateX(-120%); /* Adjust the horizontal position */
+    width: 200px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1;
+}
+
+
+.Homescreen img.SSClogo {
+    position: absolute;
+    width: 571px;   
+    height: 650px;
+    left: -203px;
+    top: 157px;
+    opacity: 0.3; 
+}
+
+.Homescreen img.USClogo {
+    position: absolute;
+    height: 650px;
+    right:0%;
+    top: 157px;
+    opacity: 0.3; 
+}
+
+.Homescreen p.CCC{
+    position: absolute;
+    width: 382px;
+    height: 261px;
+    left: 368px;
+    top: 251px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 75px;
+    line-height: 91px;
+
+    color: #000000;
+}
+
+.Homescreen p.CCCDesc{
+    position: absolute;
+    width: 534px;
+    height: 31px;
+    left: 375px;
+    top: 595px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #000000;
+}
+
+.Homescreen button.RegisterAsVoterBtn{
+    position: absolute;
+    width: 260px;
+    height: 70px;
+    left: 368px;
+    top: 675px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    background: #11b35d;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+
+    border-radius: 50px;
+
+    transition: background-color 0.3s ease;
+}
+
+.Homescreen button.RegisterAsVoterBtn:hover{
+    background-color: #FBBF16;
+}
+
+.Midbox {
+    width: 100%;
+    height: 323px;
+    background-color: #006630;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.Midbox > div {
+    width: 418px;
+    height: 323px;
+}
+  
+.Midbox div.Step1 {
+    background: #00a950;
+}
+  
+.Midbox div.Step2 {
+    background: #0d8f3f;
+}
+  
+.Midbox div.Step3 {
+    background: #00a950;
+}
+
+.Midbox div.Step1 p,
+.Midbox div.Step2 p,
+.Midbox div.Step3 p {
+  position: absolute;
+  padding-left: 46px;
+  font-family: 'Inter';
+  font-style: normal;
+  color: #FFFFFF;
+}
+
+.Midbox div.Step1 p.Step1Text,
+.Midbox div.Step2 p.Step2Text,
+.Midbox div.Step3 p.Step3Text {
+  width: 93px;
+  height: 23px;
+  padding-top: 50px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.Midbox div.Step1 p.SignupText,
+.Midbox div.Step2 p.VoteText,
+.Midbox div.Step3 p.ViewResultsText {
+  height: 39px;
+  padding-top: 70px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.Midbox div.Step1 p.SignupDesc,
+.Midbox div.Step2 p.VoteDesc,
+.Midbox div.Step3 p.ViewResultsDesc {
+  width: 289px;
+  height: 41px;
+  padding-top: 145px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.Midbox div.Step1 button.SignupRegisterBtn{
+    box-sizing: border-box;
+    width: 212px;
+    height: 58px;
+    background: #11b35d;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 50px;
+    margin-top: 220px;
+    margin-left: 100px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.Midbox div.Step1 button.SignupRegisterBtn:hover{
+    background: #FBBF16;
+}
+
+.SloganBox{
+    width: 100%;
+    height: 323px;
+    background: #7ed7a1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SloganBox p.SloganText{
+    width: 1276px;
+    height: 62px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 52px;
+    line-height: 63px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 0%;
+}
+
+.SloganBox p.SloganDesc{
+    width: 1074px;
+    height: 92px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+
+.FeatureBox {
+    width: 100%;
+    height: 609px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FeatureBox > div {
+    width: 400px;
+    height: 100%;
+    margin: 0 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.FeatureBox > div:hover{
+    background: #FBBF16;
+}
+
+.FeatureBox div.Feature1 p.Feature1Text,
+.FeatureBox div.Feature2 p.Feature2Text,
+.FeatureBox div.Feature3 p.Feature3Text{
+    position: absolute;
+    width: 230px;
+    height: 52px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    margin-top: 120px;
+    color: #292929;
+}
+
+.FeatureBox div.Feature1 p.Feature1Desc,
+.FeatureBox div.Feature2 p.Feature2Desc,
+.FeatureBox div.Feature3 p.Feature3Desc{
+    position: absolute;
+    width: 367px;
+    height: 88px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 290px;
+    color: #6D6D6D;
+}
+
+.FeatureBox div.Feature1 img.Feature1img,
+.FeatureBox div.Feature2 img.Feature2img,
+.FeatureBox div.Feature3 img.Feature3img{
+    height: 247px;
+    width: 247px;
+    margin-bottom: 220px;
+}
+
+
+.FooterBox{
+    width: 100%;
+    height: 323px;
+    background: #11b35d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.FooterBox img.FooterLogo{
+    height: 100px;
+    width: 100px;
+    margin-top: 40px;
+}
+
+
+.FooterBox p.SiteName,
+.FooterBox p.Copyright{
+    position: absolute;
+    width: 245px;
+    height: 22px;
+    font-family: 'Inter';
+    font-style: normal; 
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+}
+
+.FooterBox p.SiteName{
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.FooterBox p.Copyright{
+    font-size: 15px;
+    margin-top: 90px;
+}
+
+
+.socialIcons{
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.socialIcons a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #006630;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons i{
+    font-size: 2em;
+    color:white;
+    opacity: 0.9;
+}
+
+.socialIcons a:hover {
+    background-color: #111;
+    transition: 0.3s;
+}
+
+.socialIcons a:hover i {
+    color: white;
+    transition: 0.3s;
+}
+
+

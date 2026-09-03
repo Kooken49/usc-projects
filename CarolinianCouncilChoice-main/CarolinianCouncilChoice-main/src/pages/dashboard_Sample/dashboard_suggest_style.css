@@ -1,0 +1,626 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Nav Bar */
+nav {
+    height: 64px;
+    background-color: #11b35d;
+    display: flex;
+    justify-content: space-between; /* Distribute left and right sections to opposite ends */
+    align-items: center;
+    padding: 0 20px; /* Add some padding to the nav bar */
+}
+
+/* Navbar list styling */
+.navBar ul {
+    list-style-type: none;
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Navbar list item styling */
+.navBar li {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Navbar link styling */
+.navBar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    position: relative; /* Required for the underline animation */
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.navBar a.current-page {
+    color: #FBBF16; /* Yellow color */
+}
+
+/* Hover and focus styles */
+.navBar a:hover,
+.navBar a:focus {
+    color: #FBBF16; /* Yellow color on hover/focus */
+}
+
+.navBar a:hover::after,
+.navBar a:focus::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FBBF16; /* Yellow underline */
+    animation: underline-animation 0.3s forwards; /* Underline animation */
+}
+
+/* Underline animation */
+@keyframes underline-animation {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.navBar a.current-page::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FBBF16; /* Yellow underline */
+}
+
+.navbar-title {
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+}
+
+.navbar-title::first-letter {
+    font-size: 30px; /* Adjust the value as needed */
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+.navBar li:last-child {
+    display: flex;
+    gap: 10px; 
+}
+
+.mainWrapper {
+    width: 100%;
+    height: 1600px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    position: relative; 
+}
+
+.FooterBox{
+    width: 100%;
+    height: 323px;
+    background: #11b35d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.FooterBox img.FooterLogo{
+    height: 100px;
+    width: 100px;
+    margin-top: 40px;
+}
+
+
+.FooterBox p.SiteName,
+.FooterBox p.Copyright{
+    position: absolute;
+    width: 245px;
+    height: 22px;
+    font-family: 'Inter';
+    font-style: normal; 
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+}
+
+.FooterBox p.SiteName{
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.FooterBox p.Copyright{
+    font-size: 15px;
+    margin-top: 90px;
+}
+
+.socialIcons{
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.socialIcons a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #006630;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons i{
+    font-size: 2em;
+    color:white;
+    opacity: 0.9;
+}
+
+.socialIcons a:hover {
+    background-color: #111;
+    transition: 0.3s;
+}
+
+.socialIcons a:hover i {
+    color: white;
+    transition: 0.3s;
+}
+
+.Backgroundimg {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: top;
+    opacity: 0.1; 
+    padding-top: 10%;   
+    position: absolute;
+}
+
+.sideBar {
+    position: absolute;
+    height: 920px; /* Change the width to the desired height */
+    width: 472px; /* Change the height to the desired width */
+    border: 0;
+    top: 145px; 
+    z-index: 2;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transform: rotate(360deg); /*idk why this works but it does*/
+    background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.userInfoSideBar {
+    margin-top: 50px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.userPic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-bottom: 10px;
+}
+
+.userInfo {
+    text-align: center;
+}
+
+.userInfoSideBar p {
+    margin: 5px 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.userInfoSideBar p.votingStatusTitle {
+    font-size: 50px;
+}
+
+.userInfo p:last-child {
+    margin-bottom: 0;
+}
+
+.menuSelect {
+    margin-top: 80px;
+    height: 352px;
+    width: 80%;
+    margin-bottom: 82px;
+}
+
+.menuTab {
+    height: 88px;
+    width: 100%;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    display: flex; /* Add this */
+    align-items: center; /* Add this */
+    text-decoration: none; /* Add this line */
+    transition: background-color 0.3s ease; /* Add this line */
+}
+
+.menuTabLogo {
+    width: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.menuTabTitle {
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.menuTab:hover {
+    background-color: #FBBF16;
+    border: 2px solid black;
+}
+
+.allsettings {
+    position: absolute;
+    width: 700px;
+    height: 1350px;
+    left: 400px;
+    top: 145px;
+    z-index: 3;
+    color: white;
+}
+
+.midBar {
+    position: absolute;
+    width: 700px;
+    height: 1350px;
+    left: 743px;
+    top: 145px;
+    z-index: 3;
+}
+
+.accBox {
+    width: 50%;
+    height: 680px;
+    border-radius: 20px;
+    background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+}
+
+.ongoingElecBox {
+    width: 100%;
+    height: 375px;
+    border-radius: 20px;
+    background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.midBoxHeader {
+    display: flex;
+    align-items: center;
+}
+
+.midBoxText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.newsAndUpdatesButton {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    background: #0D8F3F;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+    top: 10px;
+    right: 20px;
+}
+
+.newsAndUpdatesButton:hover {
+    background-color: #FBBF16;
+}
+
+.liveResultsBox {
+    margin-top: 40px;
+    border-radius: 20px;
+    width: 100%;
+    height: 510px;
+    background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.electionResultsButton {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    background: #0D8F3F;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+    top: 10px;
+    right: 20px;
+}
+
+.electionResultsButton:hover {
+    background-color: #FBBF16;
+}
+
+.electionTimeBox {
+    margin-top: 40px;
+    border-radius: 20px;
+    width: 100%;
+    height: 375px;
+    background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.finalBar {
+    position: absolute;
+    width: 700px;
+    height: 920px;
+    left: 1471px;
+    top: 145px;
+    z-index: 4;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transform: rotate(360deg); /*idk why this works but it does*/
+    background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.voterAnalyticsBox {
+    margin-top: 40px;
+    border-radius: 20px;
+    width: 100%;
+    height: 375px;
+    background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.dataAnalyticsButton {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    background: #0D8F3F;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+    top: 10px;
+    right: 20px;
+}
+
+.dataAnalyticsButton:hover {
+    background-color: #FBBF16;
+}
+
+img.USClogo {
+    position: absolute;
+    height: 650px;
+    right:0%;
+    top: 157px;
+    opacity: 0.3; 
+    z-index: 4;
+}
+
+
+.content:target {
+    display: block;
+}
+
+.content {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+.accdet {
+    margin-bottom: 15px;
+}
+.accdet label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.accdet input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    color: #555;
+}
+.accdet input[readonly] {
+    background-color: #e9e9e9;
+    cursor: not-allowed;
+}
+
+.extras {
+    margin-top: 120px;
+    border-radius: 20px;
+    width: 50%;
+    height: 140px;
+    background-color: #11b35d;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 30px;
+    box-sizing: border-box;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.extras button {
+    width: 150%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 4px;
+    border-color: #000000;
+    background-color: #11b35d;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.extras button:hover {
+    background-color: #FBBF16;
+}
+
+.accBox button {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 4px;
+    border-color: #000000;
+    background-color: #11b35d;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.accBox button:hover {
+    background-color: #FBBF16;
+}
+
+.candidate-box {
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: #11b35d;
+    display: block;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 2;
+}
+.vote-button {
+    margin-top: 8px;
+    padding: 8px 16px;
+    background-color: #11b35d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.vote-button:hover {
+    background-color: #FBBF16;
+}
+.vote-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.varea{
+    margin-left: 500px;
+    margin-top: 75px;
+}
+.partylists{
+    display: block;
+}
+.candidates{
+    display: block;
+    z-index: 2;
+}
+.voteheader{
+    background-color: #11b35d;
+    color: white;
+    padding: 15px 16px;
+    border-radius: 10px;
+    font-size: 40px;
+}

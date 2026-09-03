@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard_suggest_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <nav class="navBar">
+        <ul class = "leftLinks">
+            <li><img src = "..\..\components\Images\LogoCCC.png" alt="Logo" class="navbar-logo"></li>
+            <li class="navbar-title">Carolinian Council Choice</li>
+        </ul>
+        <ul class = "rightLinks">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="..\aboutus\AboutUs.html">About</a></li>
+            <li><a href="..\contactus\ContactUs.html">Contact Us</a></li>
+            <li><a href="..\faq\FAQ.html">FAQ</a></li>
+            <li>
+                <div class="user-info">
+                    <img src="" alt="User Profile Picture" class="user-profile-pic">
+                    <span class="user-name"></span>
+                </div>
+            </li>
+        </ul> 
+    </nav>
+
+    <div class = "mainWrapper">
+        <img class = "Backgroundimg" src = "..\..\components\Images\White Background Green.png">
+
+        <div class = "sideBar">
+            <div class = "userInfoSideBar">
+                <div class = "userPic"></div>
+                <p class = "userName">[userNamePlaceHolder]</p>
+                <p class = "userType">[userTypePlaceHolder]</p>
+                <p class = "votingStatusTitle">Voting Status: </p>
+                <p class = "userVotingStatus">[userVotingStatusPlaceHolder]</p>
+            </div>
+            <div class="menuSelect">
+                <a href="#dashboard" class="menuTab">
+                    <img src="..\..\components\Images\Dashboard Logo.png" alt="DashboardLogo" class="menuTabLogo">
+                    <p class="menuTabTitle">Dashboard</p>
+                </a>
+                <a href="#vote" class="menuTab">
+                    <img src="..\..\components\Images\Vote Logo.png" alt="VoteLogo" class="menuTabLogo">
+                    <p class="menuTabTitle">Vote</p>
+                </a>
+                <a href="#settings" class="menuTab">
+                    <img src="..\..\components\Images\Settings Logo.png" alt="SettingsLogo" class="menuTabLogo">
+                    <p class="menuTabTitle">Settings</p>
+                </a>
+                <a href="..\pages\loginpage\login.html" class="menuTab">
+                    <img src="..\..\components\Images\Logout Logo.png" alt="LogoutLogo" class="menuTabLogo">
+                    <p class="menuTabTitle">Log out</p>
+                </a>
+            </div>
+        </div>
+        
+    <section id="dashboard" class="content">
+        <div class = "midBar">
+            <div class="ongoingElecBox">
+                <div class="midBoxHeader">
+                    <p class="midBoxText">Ongoing Elections</p>
+                </div>
+                <button class="newsAndUpdatesButton">News and Updates</button>
+            </div>
+
+            <div class = "liveResultsBox">
+                <div class = "midBoxHeader">
+                    <p class = midBoxText>Live Results</p>
+                </div>
+                <button class = "electionResultsButton">Election Results</button>
+            </div>
+
+            <div class = "electionTimeBox">
+                <div class = "midBoxHeader">
+                    <p class = midBoxText>Election Timeline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vote" class="content">
+        <div class="varea">
+            <div class="partlists">
+                <h1 class="voteheader">Cast Your Vote</h1>
+                <h1 class="voteheader">Party List</h1>
+            </div>
+            <div class="candidates">
+                <h1 class="voteheader">Candidate List</h1>
+                <div id="candidate-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="settings" class="content">
+        <div class="allsettings">
+            <div class="accBox">
+                <h1>Account Information</h1>
+
+                <div class="accdet">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" value="John Doe" readonly>
+                </div>
+                <div class="accdet">
+                    <label for="idNumber">ID Number</label>
+                    <input type="text" id="idNumber" value="" readonly>
+                </div>
+                <div class="accdet">
+                    <label for="status">Status</label>
+                    <input type="text" id="status" value="" readonly>
+                </div>
+                <div class="accdet">
+                    <label for="yearLevel">Year Level</label>
+                    <input type="text" id="yearLevel" value="" readonly>
+                </div>
+                <div class="accdet">
+                    <label for="department">Department</label>
+                    <input type="text" id="department" value="" readonly>
+                </div>
+                <div class="accdet">
+                    <label for="course">Course</label>
+                    <input type="text" id="course" value="" readonly>
+                </div>
+                    <button class="btn">Change Password</button>
+                    <button class="btn">Change Profile Picture</button>
+            </div>
+
+            <div class="extras">
+                <a href="..\privacypolicy\privacypolicy.html">
+                    <button class="btn">Privacy Policy</button>
+                  </a>
+                  <a href="..\termsofservice\TermsOfService.html">
+                    <button class="btn">Terms Of Service</button>
+                  </a>
+            </div>
+
+    </section>
+
+        <img class = "USClogo" src = "..\..\components\Images\Right USC Logo.png">
+    </div>
+
+
+    <footer class = "FooterBox">
+        <div class = "footerContainer"></div>
+            <img class = "FooterLogo" src = "..\..\components\Images\LogoCCC.png">
+            <p class = "SiteName">Carolinian Council Choice</p>
+            <p class = "Copyright">© 2024 Web 1</p>
+        
+            <div class="socialIcons">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript">
+        const { createClient } = supabase;
+        const supabaseUrl = 'https://qbdvzhavzxgjdgctnzoe.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFiZHZ6aGF2enhnamRnY3Ruem9lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY3OTM1MjIsImV4cCI6MjAzMjM2OTUyMn0.NyzChModofn6DKXkbQ4GU-TPdDccvxAtsuKuj9puK4c';
+        const connection = createClient(supabaseUrl, supabaseKey);
+
+        // Function to fetch and display candidates
+        async function fetchAndDisplayCandidates() {
+            console.log('fetchAndDisplayCandidates called'); // Debugging statement
+            const { data, error } = await connection
+                .from('candidates')
+                .select('candidateid, firstName, lastName, candidateDescription');
+
+            if (error) {
+                console.error('Error fetching candidates:', error);
+                return;
+            }
+
+            console.log('Data fetched:', data); // Debugging statement
+            const candidateList = document.getElementById('candidate-list');
+            candidateList.innerHTML = ''; // Clear existing candidates
+
+            data.forEach(candidate => {
+                const candidateBox = document.createElement('div');
+                candidateBox.className = 'candidate-box';
+
+                const name = document.createElement('h2');
+                name.textContent = `${candidate.firstName} ${candidate.lastName}`;
+                candidateBox.appendChild(name);
+
+                const description = document.createElement('p');
+                description.textContent = candidate.candidateDescription;
+                candidateBox.appendChild(description);
+
+                const voteButton = document.createElement('button');
+                voteButton.textContent = 'Vote';
+                voteButton.className = 'vote-button';
+                voteButton.onclick = () => registerVote(candidate.candidateid, voteButton);
+                candidateBox.appendChild(voteButton);
+
+                candidateList.appendChild(candidateBox);
+            });
+        }
+
+        // Function to register a vote
+        async function registerVote(candidateId, button) {
+            const { data, error } = await connection
+                .from('votes')
+                .insert([{ candidate_id: candidateId }]);
+
+            if (error) {
+                console.error('Error registering vote:', error);
+                alert('An error occurred while voting. Please try again.');
+                return;
+            }
+
+            // Disable the vote button and show confirmation
+            button.textContent = 'Voted';
+            button.disabled = true;
+        }
+
+        // Ensure the function runs after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', fetchAndDisplayCandidates);
+    </script>
+
+
+    </body>
+</html>
